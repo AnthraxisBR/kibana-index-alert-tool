@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+  mailsend:
+    container_name: mailsend
+    #image: es-mail:latest
+    build:
+      context: .
+    volumes:
+      - ./:/app
+      - ./logs:/logs
+      - /home/$USER/.aws:/root/.aws:ro
+      - /home/$USER/.kibana_index_alert_tool:/root/.kibana_index_alert_tool:ro
+    working_dir: /app
+    restart: unless-stopped
+    env_file:
+      - .env
+    entrypoint: sh /app/crontab.sh
+#    networks:
+#      - panel

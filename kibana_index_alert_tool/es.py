@@ -1,7 +1,9 @@
+import getpass
 import logging
 import os
 from elasticsearch import Elasticsearch
 from elasticsearch.exceptions import TransportError
+from dotenv import load_dotenv
 
 from kibana_index_alert_tool.mail import SendMail
 from kibana_index_alert_tool.index_templates import index_component, index_template
